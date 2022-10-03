@@ -15,8 +15,10 @@
   "bugs": {
     "url": "https://github.com/0xarthurxyz/pming-contribution-insights/issues"
   },
+  "type": "module",
   "homepage": "https://github.com/0xarthurxyz/pming-contribution-insights#readme",
   "dependencies": {
+    "dotenv": "^16.0.3",
     "octokit": "^2.0.7"
   }
 }
