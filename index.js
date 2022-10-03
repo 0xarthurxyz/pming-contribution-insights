@@ -1,4 +1,3 @@
-// const { Octokit } = require("octokit");
 import { Octokit } from "octokit"; // to make GET requests from Github API
 import dotenv from 'dotenv'
 dotenv.config() // to use .env in file
