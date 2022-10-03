@@ -18,6 +18,7 @@ async function getPullRequestInsights() {
     var numberLinesAdded = 0;
     var numberLinesDeleted = 0;
     var numberCommits = 0;
+    const contributors = new Set();
 
     // Counts opened pull requests between two dates
     for (let i = 0; i < pullRequests.data.length; i++) {
@@ -25,8 +26,6 @@ async function getPullRequestInsights() {
         const pullRequest = pullRequests.data[i];
         const createdAt = new Date(pullRequest.created_at);
         const mergedAt = new Date(pullRequest.merged_at);
-
-
         
         if (createdAt >= new Date("2022-08-24") && createdAt <= new Date("2022-10-01")) {
             // get detailed PR data
@@ -39,12 +38,14 @@ async function getPullRequestInsights() {
             });
 
             // increment counters
+            contributors.add(prNumber.data.user.login);
             numberPullRequestsOpened++;
             numberLinesAdded += prNumber.data.additions;
             numberLinesDeleted += prNumber.data.deletions;
             numberCommits += prNumber.data.commits;
         }
     };
+    console.log(`contributors: ${new Array(...contributors).join(' ')}`);
     console.log(`numberPullRequestsOpened: ${numberPullRequestsOpened}`);
     console.log(`numberLinesAdded: ${numberLinesAdded}`);
     console.log(`numberLinesDeleted: ${numberLinesDeleted}`);
